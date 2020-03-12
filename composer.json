@@ -1,12 +1,16 @@
 {
     "name": "maxyc/pipedrive",
     "description": "Complete Pipedrive API client for PHP and/or Laravel",
-    "keywords": ["pipedrive", "api", "client", "laravel"],
+    "keywords": ["pipedrive", "api", "client"],
     "license": "MIT",
     "authors": [
         {
             "name": "Israel Ortuño",
             "email": "ai.ortuno@gmail.com"
+        },
+        {
+            "name": "Maxyc Webber",
+            "email": "maxycws@gmail.com"
         }
     ],
     "require": {
