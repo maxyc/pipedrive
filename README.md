@@ -22,8 +22,6 @@ Do you like this package? Did you find it useful? Donate and support its develop
 
 This package provides a complete **framework agnostic** Pipedrive CRM API client library for PHP. It includes all the resources listed on Pipedrive's documentation.
 
-**IMPORTANT:** If you are using Laravel >= 5.8 make sure your version is > 2.1.0.
-
 Feel free to drop me a message at [israel@devio.es](mailto:israel@devio.es) or tweet me at [@IsraelOrtuno](https://twitter.com/IsraelOrtuno).
 
 ## Quick start using API token (read below for OAuth)
@@ -57,10 +55,6 @@ For a deeper knowledge of how to use this package, follow this index:
     - [Response methods](#response-methods)
 - [Available resources](#available-resources)
     - [The File Resource](#the-file-resource)
-- [Configure and use in Laravel](#configure-and-use-in-laravel)
-    - [Service Provider and Facade](#service-provider-and-facade)
-    - [The service configuration](#the-service-configuration)
-    - [Using it](#using-it)
 - [Contribute](#contribute)
 
 # Important
@@ -72,14 +66,14 @@ Versions 1.x do not include OAuth support, update to version 2.x to use this fea
 You can install the package via `composer require` command:
 
 ```shell
-composer require devio/pipedrive
+composer require maxyc/pipedrive
 ```
 
 Or simply add it to your composer.json dependences and run `composer update`:
 
 ```json
 "require": {
-    "devio/pipedrive": "^2.0"
+    "maxyc/pipedrive": "^2.0"
 }
 ```
 
@@ -314,64 +308,3 @@ $pipedrive->files->add([
 ```
 
 Actually, it is pretty simple. Just pass a `\SplFileInfo` instance to the `file` key of the options array and specify at least one of the elements it goes related to (deal, person, ...).
-
-# Configure and use in Laravel
-
-If you are using Laravel, you could make use of the `PipedriveServiceProvider` and `PipedriveFacade` which will make the using of this package much more comfortable:
-
-## Service Provider and Facade
-
-Include the `PipedriveServiceProvider` to the providers array in `config/app.php` and register the Laravel Facade.
-
-```php
-'providers' => [
-  ...
-  Devio\Pipedrive\PipedriveServiceProvider::class,
-  ...
-],
-'alias' => [
-    ...
-    'Pipedrive' => Devio\Pipedrive\PipedriveFacade::class,
-    ...
-]
-```
-
-## The service configuration
-
-Laravel includes a configuration file for storing external services information at `config/services.php`. We have to set up our Pipedrive token at that file like this:
-
-```php
-'pipedrive' => [
-    'token' => 'the pipedrive token'
-]
-```
-
-Of course, as many other config parameters, you could store the token at your `.env` file or environment variable and fetch it using `dotenv`:
-
-```php
-'pipedrive' => [
-    'token' => env('PIPEDRIVE_TOKEN')
-]
-```
-
-## Using it
-
-You could use it using the Laravel facade `PipedriveFacade` that we have previously loaded:
-
-```php 
-$organizations = Pipedrive::organizations()->all();
-//
-Pipedrive::persons()->add(['name' => 'John Doe']);
-```
-
-Also, resolve it out of the service container:
-
-```php
-$pipedrive = app()->make('pipedrive');
-````
-
-Or even inject it wherever you may need using the `Devio\Pipedrive\Pipedrive` signature.
-
-# Contribute
-
-Feel free to contribute via PR.
